@@ -1,0 +1,25 @@
+{
+  "name": "checklist-backend",
+  "version": "1.0.0",
+  "description": "Backend do app de checklist que vou utilizar no restaurante",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node src/api/v1/status/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MantuanoBruno/CheckList-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MantuanoBruno/CheckList-Backend/issues"
+  },
+  "homepage": "https://github.com/MantuanoBruno/CheckList-Backend#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
