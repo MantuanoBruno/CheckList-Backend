@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node src/api/v1/status/server.js",
+    "dev": "node src/server.js",
     "services:up": "docker compose up -d",
     "services:down": "docker compose down",
-    "services:stop": "docker compose stop"
+    "services:stop": "docker compose stop",
+    "lint:check": "prettier --check .",
+    "lint:fix": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,10 @@
   },
   "homepage": "https://github.com/MantuanoBruno/CheckList-Backend#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4"
   }
 }
