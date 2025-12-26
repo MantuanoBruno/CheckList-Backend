@@ -3,10 +3,8 @@ services:
     image: postgres:16
     container_name: checklist_postgres
     restart: always
-    environment:
-      POSTGRES_USER: checklist
-      POSTGRES_PASSWORD: checklist
-      POSTGRES_DB: checklist_db
+    env_file:
+      - ../.env.development
     ports:
       - "5432:5432"
     volumes:
