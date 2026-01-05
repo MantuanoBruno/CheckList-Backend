@@ -4,7 +4,7 @@
   "description": "Backend do app de checklist que vou utilizar no restaurante",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --runInBand",
     "dev": "node src/server.js",
     "services:up": "docker compose -f infra/compose.yaml up -d",
     "services:down": "docker compose -f infra/compose.yaml down",
@@ -30,8 +30,10 @@
   "dependencies": {
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "jest": "^30.2.0",
     "node-pg-migrate": "^8.0.4",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "supertest": "^7.1.4"
   },
   "devDependencies": {
     "prettier": "^3.7.4"
