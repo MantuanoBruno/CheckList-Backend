@@ -1,12 +1,10 @@
 import express from "express";
-import statusRoutes from "./api/v1/status/status.routes.js";
+import statusRoutes from "#src/api/v1/status/status.routes.js";
+import status from "#src/api/v1/status/status.js";
 
 const app = express();
 
-app.use("/api/v1", statusRoutes);
-
-app.listen(3000, () => {
-  console.log("Server rodando na porta 3000");
-});
+app.use(express.json);
+app.use("/api/v1", statusRoutes, status);
 
 export default app;

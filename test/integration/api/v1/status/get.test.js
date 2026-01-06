@@ -1,28 +1,24 @@
-const request = require("supertest");
-const app = require("../../../../../src/app");
-const database = require("../../../../../infra/config/database");
+import orchestrator from "test/orchestrator.js";
 
-beforeAll(() => {
-  jest.spyOn(console, "error").mockImplementation(() => {});
+beforeAll(async () => {
+  await orchestrator.waitForAllServices();
 });
 
-afterAll(() => {
-  console.error.mockRestore();
-});
+//afterAll(async () => {
+//  await orchestrator.stopAllServices();
+//});
 
-beforeEach(() => {
-  database.query.mockResolvedValueOnce({ rows: [] });
-});
-
-jest.mock("../../../../../infra/config/database", () => ({
-  query: jest.fn(),
-}));
-
-describe("GET /api/v1/health", () => {
-  it("retorna 200 quando o banco esta disponivel", async () => {
-    const response = await request(app).get("/api/v1/health");
-
+describe("GET /api/v1/status", () => {
+  test("Lendo o status do sistema", async () => {
+    const response = await fetch("http://localhost:3000/api/v1/status");
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ status: "ok" });
+
+    const responseBody = await response.json();
+    const parseUpdatedAt = new Date(responseBody.updated_at).toISOString();
+    expect(responseBody.updated_at).toEqual(parseUpdatedAt);
+
+    expect(responseBody.dependencies.database.version).toEqual("16.0");
+    expect(responseBody.dependencies.database.max_connections).toEqual(100);
+    expect(responseBody.dependencies.database.used_connections).toEqual(1);
   });
 });
