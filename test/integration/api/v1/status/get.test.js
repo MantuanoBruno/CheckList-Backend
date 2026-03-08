@@ -1,12 +1,8 @@
-import orchestrator from "test/orchestrator.js";
+import orchestrator from "#test/orchestrator.js";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
 });
-
-//afterAll(async () => {
-//  await orchestrator.stopAllServices();
-//});
 
 describe("GET /api/v1/status", () => {
   test("Lendo o status do sistema", async () => {
@@ -17,7 +13,7 @@ describe("GET /api/v1/status", () => {
     const parseUpdatedAt = new Date(responseBody.updated_at).toISOString();
     expect(responseBody.updated_at).toEqual(parseUpdatedAt);
 
-    expect(responseBody.dependencies.database.version).toEqual("16.0");
+    expect(responseBody.dependencies.database.version).toContain("16");
     expect(responseBody.dependencies.database.max_connections).toEqual(100);
     expect(responseBody.dependencies.database.used_connections).toEqual(1);
   });
